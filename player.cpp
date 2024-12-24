@@ -286,9 +286,8 @@ void UpdatePlayer(void)
 
 	{
 		LIGHT* light = GetLightData(0);
-		XMFLOAT3 pos = cam->at;//cam->pos;
-
-		light->Direction = cam->at;
+		XMFLOAT3 pos = g_Player.pos;//cam->pos;
+		pos.z += -25.0f;
 
 		light->Position = pos;
 		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
@@ -296,11 +295,24 @@ void UpdatePlayer(void)
 		light->Ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 		light->Type = LIGHT_TYPE_POINT;
 		light->Enable = TRUE;
-		light->Attenuation = 10.0f;
+		light->Attenuation = 100.0f;
 		SetLightData(0, light);
 	}
 
+	{
+		LIGHT* light = GetLightData(1);
+		XMFLOAT3 pos = g_Player.pos;//cam->pos;
+		pos.z += 75.0f;
 
+		light->Position = pos;
+		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
+
+		light->Ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+		light->Type = LIGHT_TYPE_POINT;
+		light->Enable = TRUE;
+		light->Attenuation = 100.0f;
+		SetLightData(1, light);
+	}
 
 
 
