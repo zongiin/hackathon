@@ -206,7 +206,6 @@ void UpdatePlayer(void)
 	}
 	if (GetKeyboardPress(DIK_DOWN))
 	{
-		g_Player.spd = VALUE_MOVE;
 		//g_Player.pos.z -= g_Player.spd;
 		cam->rot.y= 0.0f;
 	}
