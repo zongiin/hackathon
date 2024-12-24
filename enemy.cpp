@@ -11,11 +11,14 @@
 #include "debugproc.h"
 #include "enemy.h"
 #include "shadow.h"
+#include "player.h"
+#include "fade.h"
+
 
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define	MODEL_ENEMY			"data/MODEL/Hanako.01.obj"		// 読み込むモデル名
+#define	MODEL_ENEMY			"data/MODEL/enemy.obj"		// 読み込むモデル名
 
 #define	VALUE_MOVE			(5.0f)						// 移動量
 #define	VALUE_ROTATE		(XM_PI * 0.02f)				// 回転量
@@ -64,8 +67,8 @@ HRESULT InitEnemy(void)
 		g_Enemy[i].load = TRUE;
 
 		g_Enemy[i].pos = XMFLOAT3(0.0f, 7.0f, -200.0f);
-		g_Enemy[i].rot = XMFLOAT3(0.0f, XM_PI, 0.0f);
-		g_Enemy[i].scl = XMFLOAT3(0.02f, 0.02f, 0.02f);
+		g_Enemy[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		g_Enemy[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 
 		g_Enemy[i].spd  = 0.0f;			// 移動スピードクリア
 		g_Enemy[i].size = ENEMY_SIZE;	// 当たり判定の大きさ
@@ -115,17 +118,34 @@ void UninitEnemy(void)
 //=============================================================================
 void UpdateEnemy(void)
 {
+	PLAYER* Player = GetPlayer();
 	// エネミーを動かく場合は、影も合わせて動かす事を忘れないようにね！
 	for (int i = 0; i < MAX_ENEMY; i++)
 	{
 		if (g_Enemy[i].use == TRUE)		// このエネミーが使われている？
 		{								// Yes
-			g_Enemy[i].pos.z += 0.8f;
+			g_Enemy[i].pos.z += 1.8f;
+			float posZ = Player->pos.z - g_Enemy[i].pos.z;
+			if(posZ > 50)
+			{
+			
+			}
+			if (posZ<=50)
+			{
+
+			}
+			if (posZ <= 20)
+			{
+				SetFade(FADE_OUT, MODE_RESULT);
+			}
+
+
 
 			// 影もプレイヤーの位置に合わせる
 			XMFLOAT3 pos = g_Enemy[i].pos;
 			pos.y -= (ENEMY_OFFSET_Y - 0.1f);
 			SetPositionShadow(g_Enemy[i].shadowIdx, pos);
+			
 		}
 	}
 
@@ -189,9 +209,14 @@ void DrawEnemy(void)
 
 		XMStoreFloat4x4(&g_Enemy[i].mtxWorld, mtxWorld);
 
+		if (i == 0) {
+			SetFuchi(1);
+		}
 		// モデル描画
 		DrawModel(&g_Enemy[i].model);
-
+		if (i == 0) {
+			SetFuchi(0);
+		}
 	}
 	
 	// カリング設定を戻す
