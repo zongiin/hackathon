@@ -168,7 +168,7 @@ void DrawGame0(void)
 	// 3Dの物を描画する処理
 	// 影の描画処理
 	DrawShadow();
-
+	DrawHall();
 	// エネミーの描画処理
 	//DrawEnemy();
 
@@ -178,7 +178,7 @@ void DrawGame0(void)
 	// 弾の描画処理
 	DrawBullet();
 
-	DrawHall();
+	
 
 	// パーティクルの描画処理
 	//DrawParticle();

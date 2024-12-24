@@ -298,7 +298,7 @@ void UpdatePlayer(void)
 	}
 
 	{
-		LIGHT* light = GetLightData(1);
+		LIGHT* light = GetLightData(2);
 		XMFLOAT3 pos = g_Player.pos;
 		pos.y = 50.0f;
 		pos.z -= 100.0f;
