@@ -277,7 +277,6 @@ void UpdatePlayer(void)
 			{
 				g_Parts[i].time -= maxNo;				// ‚O”Ô–Ú‚ÉƒŠƒZƒbƒg‚µ‚Â‚Â‚à¬”•”•ª‚ğˆø‚«Œp‚¢‚Å‚¢‚é
 			}
-
 		}
 
 	}
