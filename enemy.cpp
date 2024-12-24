@@ -120,6 +120,7 @@ void UpdateEnemy(void)
 	{
 		if (g_Enemy[i].use == TRUE)		// このエネミーが使われている？
 		{								// Yes
+			g_Enemy[i].pos.z += 0.8f;
 
 			// 影もプレイヤーの位置に合わせる
 			XMFLOAT3 pos = g_Enemy[i].pos;
