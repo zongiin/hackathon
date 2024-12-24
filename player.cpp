@@ -202,12 +202,12 @@ void UpdatePlayer(void)
 	{
 		g_Player.spd = VALUE_MOVE;
 		//g_Player.pos.z += g_Player.spd;
-		cam->rot.y = XM_PI;
+		cam->rot.y = 0.0f;
 	}
 	if (GetKeyboardPress(DIK_DOWN))
 	{
 		//g_Player.pos.z -= g_Player.spd;
-		cam->rot.y= 0.0f;
+		cam->rot.y= XM_PI;
 	}
 
 #ifdef _DEBUG
@@ -281,19 +281,19 @@ void UpdatePlayer(void)
 	}
 
 
-	//// ポイントライトのテスト
-	//{
-	//	LIGHT *light = GetLightData(1);
-	//	XMFLOAT3 pos = g_Player.pos;
-	//	pos.y += 20.0f;
+	// ポイントライトのテスト
+	{
+		LIGHT *light = GetLightData(1);
+		XMFLOAT3 pos = g_Player.pos;
+		pos.y = 25.0f;
 
-	//	light->Position = pos;
-	//	light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	//	light->Ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	//	light->Type = LIGHT_TYPE_POINT;
-	//	light->Enable = TRUE;
-	//	SetLightData(1, light);
-	//}
+		light->Position = pos;
+		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+		light->Ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
+		light->Type = LIGHT_TYPE_POINT;
+		light->Enable = TRUE;
+		SetLightData(1, light);
+	}
 
 
 
@@ -312,7 +312,7 @@ void UpdatePlayer(void)
 void DrawPlayer(void)
 {
 	XMMATRIX mtxScl, mtxRot, mtxTranslate, mtxWorld, quatMatrix;
-
+	
 	// カリング無効
 	SetCullingMode(CULL_MODE_NONE);
 
