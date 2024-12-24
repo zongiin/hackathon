@@ -12,7 +12,7 @@
 #include "input.h"
 #include "sound.h"
 #include "fade.h"
-
+#include "map.h"
 #include "player.h"
 #include "enemy.h"
 #include "meshfield.h"
@@ -26,6 +26,7 @@
 #include "debugproc.h"
 #include "hall.h"
 #include "objlight.h"
+#include "prop.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -55,9 +56,6 @@ HRESULT InitGame(void)
 {
 	g_ViewPortType_Game = TYPE_FULL_SCREEN;
 
-	// フィールドの初期化
-	InitMeshField(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), 100, 100, 13.0f, 13.0f);
-
 	// ライトを有効化	// 影の初期化処理
 	InitShadow();
 
@@ -65,7 +63,9 @@ HRESULT InitGame(void)
 	InitPlayer();
 
 	// エネミーの初期化
-	//InitEnemy();
+	InitEnemy();
+
+	InitProp();
 
 	InitHall();
 
@@ -79,7 +79,7 @@ HRESULT InitGame(void)
 	//InitParticle();
 	InitObjlight();
 
-
+	InitMap();
 
 	return S_OK;
 }
@@ -101,7 +101,7 @@ void UninitGame(void)
 	UninitHall();
 
 	// エネミーの終了処理
-	//UninitEnemy();
+	UninitEnemy();
 
 	UninitObjlight();
 	// プレイヤーの終了処理
@@ -135,13 +135,14 @@ void UpdateGame(void)
 	if (g_bPause == FALSE)
 		return;
 	UpdateHall();
+	UpdateProp();
 	// プレイヤーの更新処理
 	UpdatePlayer();
 
 	// エネミーの更新処理
-	//UpdateEnemy();
+	UpdateEnemy();
 
-	
+	UpdateMap();
 
 	// 弾の更新処理
 	UpdateBullet();
@@ -167,10 +168,13 @@ void DrawGame0(void)
 {
 	// 3Dの物を描画する処理
 	// 影の描画処理
+	SetDepthEnable(TRUE);
+	SetLightEnable(TRUE);
 	DrawShadow();
 	DrawHall();
+	DrawProp();
 	// エネミーの描画処理
-	//DrawEnemy();
+	DrawEnemy();
 
 	// プレイヤーの描画処理
 	DrawPlayer();
@@ -193,7 +197,7 @@ void DrawGame0(void)
 
 	// スコアの描画処理
 	DrawScore();
-
+	DrawMap();
 
 	// ライティングを有効に
 	SetLightEnable(TRUE);

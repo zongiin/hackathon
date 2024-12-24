@@ -13,6 +13,7 @@
 #include "hall.h"
 #include "shadow.h"
 #include "player.h"
+#include "prop.h"
 
 #include "debugproc.h"
 
@@ -20,7 +21,7 @@
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define	MODEL_HALL		"data/MODEL/School_rouka_v003.obj"			// 読み込むモデル名
+#define	MODEL_HALL		"data/MODEL/School_rouka_v005.obj"			// 読み込むモデル名
 
 
 
@@ -92,7 +93,7 @@ void UninitHall(void)
 void UpdateHall(void)
 {
 	PLAYER* player = GetPlayer();
-
+	PROP* props = GetProps();
 	
 	if (player->pos.z > g_loop * 480.0f)
 	{
@@ -107,6 +108,10 @@ void UpdateHall(void)
 		for (int i = 0; i < MAX_HALL; i++)
 		{
 			g_Hall[i].pos.z -= 2400.0f;
+		}
+		for (int i = 0; i < MAX_PROP; i++)
+		{
+			props[i].pos.z -= 2400.0f;
 		}
 		g_loop = 1;
 	}
@@ -175,7 +180,7 @@ void DrawHall(void)
 	}
 	
 	//SetFuchi(0);
-	SetLightEnable(FALSE);
+	//SetLightEnable(FALSE);
 	// カリング設定を戻す
 	//SetCullingMode(CULL_MODE_BACK);
 }
