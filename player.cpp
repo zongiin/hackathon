@@ -52,7 +52,7 @@ static float		roty = 0.0f;
 
 static LIGHT		g_Light;
 
-
+static float   g_playerscore;
 
 
 
@@ -196,7 +196,8 @@ void UninitPlayer(void)
 //=============================================================================
 void UpdatePlayer(void)
 {
-	AddScore((int)g_Player.pos.z);
+	
+	AddScore((int)g_playerscore);
 	CAMERA *cam = GetCamera();
 	OBJLIGHT* Objlight = GetObjlight();
 
@@ -205,6 +206,7 @@ void UpdatePlayer(void)
 
 	if (GetKeyboardPress(DIK_UP))
 	{
+		g_playerscore += VALUE_MOVE;
 		g_Player.spd = VALUE_MOVE;
 		//g_Player.pos.z += g_Player.spd;
 		cam->rot.y = 0.0f;

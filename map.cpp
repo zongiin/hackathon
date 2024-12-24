@@ -81,7 +81,7 @@ HRESULT InitMap(void)
 		g_Use = TRUE;
 		g_w[i] = TEXTURE_WIDTH;
 		g_h[i] = TEXTURE_HEIGHT;
-		g_Pos[i] = { 500.0f, 20.0f, 0.0f };
+		g_Pos[i] = { -10000.0f, 20.0f, 0.0f };
 		g_TexNo[i] = 0;
 	}
 
