@@ -15,6 +15,7 @@
 
 #include "debugproc.h"
 #include "objlight.h"
+#include "score.h"
 
 
 //*****************************************************************************
@@ -194,6 +195,7 @@ void UninitPlayer(void)
 //=============================================================================
 void UpdatePlayer(void)
 {
+	AddScore((int)g_Player.pos.z);
 	CAMERA *cam = GetCamera();
 	OBJLIGHT* Objlight = GetObjlight();
 
@@ -213,12 +215,7 @@ void UpdatePlayer(void)
 	}
 
 #ifdef _DEBUG
-	if (GetKeyboardPress(DIK_R))
-	{
-		g_Player.pos.z = g_Player.pos.x = 0.0f;
-		g_Player.spd = 0.0f;
-		roty = 0.0f;
-	}
+
 #endif
 	g_Player.rot.y = cam->rot.y;
 	if (g_Player.spd > 0.0f)
