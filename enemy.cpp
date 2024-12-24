@@ -63,7 +63,7 @@ HRESULT InitEnemy(void)
 		LoadModel(MODEL_ENEMY, &g_Enemy[i].model);
 		g_Enemy[i].load = TRUE;
 
-		g_Enemy[i].pos = XMFLOAT3(0.0f, 1.0f, 20.0f);
+		g_Enemy[i].pos = XMFLOAT3(0.0f, 7.0f, -200.0f);
 		g_Enemy[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_Enemy[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 
@@ -120,47 +120,6 @@ void UpdateEnemy(void)
 	{
 		if (g_Enemy[i].use == TRUE)		// このエネミーが使われている？
 		{								// Yes
-
-			// 移動処理
-			if (g_Enemy[i].tblMax > 0)	// 線形補間を実行する？
-			{	// 線形補間の処理
-				int nowNo = (int)g_Enemy[i].time;			// 整数分であるテーブル番号を取り出している
-				int maxNo = g_Enemy[i].tblMax;				// 登録テーブル数を数えている
-				int nextNo = (nowNo + 1) % maxNo;			// 移動先テーブルの番号を求めている
-				INTERPOLATION_DATA* tbl = g_MoveTblAdr[g_Enemy[i].tblNo];	// 行動テーブルのアドレスを取得
-
-				XMVECTOR nowPos = XMLoadFloat3(&tbl[nowNo].pos);	// XMVECTORへ変換
-				XMVECTOR nowRot = XMLoadFloat3(&tbl[nowNo].rot);	// XMVECTORへ変換
-				XMVECTOR nowScl = XMLoadFloat3(&tbl[nowNo].scl);	// XMVECTORへ変換
-
-				XMVECTOR Pos = XMLoadFloat3(&tbl[nextNo].pos) - nowPos;	// XYZ移動量を計算している
-				XMVECTOR Rot = XMLoadFloat3(&tbl[nextNo].rot) - nowRot;	// XYZ回転量を計算している
-				XMVECTOR Scl = XMLoadFloat3(&tbl[nextNo].scl) - nowScl;	// XYZ拡大率を計算している
-
-				float nowTime = g_Enemy[i].time - nowNo;	// 時間部分である少数を取り出している
-
-				Pos *= nowTime;								// 現在の移動量を計算している
-				Rot *= nowTime;								// 現在の回転量を計算している
-				Scl *= nowTime;								// 現在の拡大率を計算している
-
-				// 計算して求めた移動量を現在の移動テーブルXYZに足している＝表示座標を求めている
-				XMStoreFloat3(&g_Enemy[i].pos, nowPos + Pos);
-
-				// 計算して求めた回転量を現在の移動テーブルに足している
-				XMStoreFloat3(&g_Enemy[i].rot, nowRot + Rot);
-
-				// 計算して求めた拡大率を現在の移動テーブルに足している
-				XMStoreFloat3(&g_Enemy[i].scl, nowScl + Scl);
-
-				// frameを使て時間経過処理をする
-				g_Enemy[i].time += 1.0f / tbl[nowNo].frame;	// 時間を進めている
-				if ((int)g_Enemy[i].time >= maxNo)			// 登録テーブル最後まで移動したか？
-				{
-					g_Enemy[i].time -= maxNo;				// ０番目にリセットしつつも小数部分を引き継いでいる
-				}
-
-			}
-
 
 			// 影もプレイヤーの位置に合わせる
 			XMFLOAT3 pos = g_Enemy[i].pos;
