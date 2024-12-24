@@ -188,7 +188,7 @@ void DrawScore(void)
 //=============================================================================
 void AddScore(int add)
 {
-	g_Score += add;
+	g_Score = add;
 	if (g_Score > SCORE_MAX)
 	{
 		g_Score = SCORE_MAX;
