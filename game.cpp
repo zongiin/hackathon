@@ -12,7 +12,7 @@
 #include "input.h"
 #include "sound.h"
 #include "fade.h"
-
+#include "map.h"
 #include "player.h"
 #include "enemy.h"
 #include "meshfield.h"
@@ -79,7 +79,7 @@ HRESULT InitGame(void)
 	//InitParticle();
 	InitObjlight();
 
-
+	InitMap();
 
 	return S_OK;
 }
@@ -100,6 +100,7 @@ void UninitGame(void)
 
 	UninitHall();
 
+	UninitMap();
 	// エネミーの終了処理
 	//UninitEnemy();
 
@@ -141,7 +142,7 @@ void UpdateGame(void)
 	// エネミーの更新処理
 	//UpdateEnemy();
 
-	
+	UpdateMap();
 
 	// 弾の更新処理
 	UpdateBullet();
@@ -193,7 +194,7 @@ void DrawGame0(void)
 
 	// スコアの描画処理
 	DrawScore();
-
+	DrawMap();
 
 	// ライティングを有効に
 	SetLightEnable(TRUE);

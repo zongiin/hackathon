@@ -6,15 +6,16 @@
 //=============================================================================
 #include "main.h"
 #include "renderer.h"
-#include "Map.h"
+#include "map.h"
 #include "sprite.h"
-
+#include "player.h"
+#include "enemy.h"
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
 #define TEXTURE_WIDTH				(16)	// キャラサイズ
 #define TEXTURE_HEIGHT				(32)	// 
-#define TEXTURE_MAX					(1)		// テクスチャの数
+#define TEXTURE_MAX					(4)		// テクスチャの数
 
 
 //*****************************************************************************
@@ -29,7 +30,11 @@ static ID3D11Buffer* g_VertexBuffer = NULL;		// 頂点情報
 static ID3D11ShaderResourceView* g_Texture[TEXTURE_MAX] = { NULL };	// テクスチャ情報
 
 static char* g_TexturName[TEXTURE_MAX] = {
-	"data/TEXTURE/number16x32.png",
+	"data/TEXTURE/bg.png",
+	"data/TEXTURE/field003.jpg",
+	"data/TEXTURE/field004.jpg",
+	"data/TEXTURE/enemy00.png",
+
 };
 
 
@@ -117,7 +122,15 @@ void UninitMap(void)
 //=============================================================================
 void UpdateMap(void)
 {
-
+	//24000
+	ENEMY* Enemy = GetEnemy();
+	PLAYER* Player =GetPlayer();
+	g_Pos[0] = XMFLOAT3(1050.0f, 20.0f,0.0f );
+	g_w[0] = TEXTURE_WIDTH*32.0f;
+	g_h[0] = TEXTURE_HEIGHT * 1.5f;
+	//g_Pos[1]
+	g_Pos[2] = XMFLOAT3(800.0f+(Player->pos.z /5.0f),20.0f, Player->pos.x);
+	g_Pos[3] = XMFLOAT3(800.0f+(Enemy->pos.z  /5.0f),20.0f, 0.0f);
 
 #ifdef _DEBUG	// デバッグ情報を表示する
 	//char *str = GetDebugStr();
@@ -150,12 +163,13 @@ void DrawMap(void)
 	SetMaterial(material);
 
 	// テクスチャ設定
-	GetDeviceContext()->PSSetShaderResources(0, 1, &g_Texture[g_TexNo]);
+	
 
 	// 桁数分処理する
 
 	for (int i = 0; i < TEXTURE_MAX; i++)
 	{
+		GetDeviceContext()->PSSetShaderResources(0, 1, &g_Texture[i]);
 		// 今回表示する桁の数字
 
 		// スコアの位置やテクスチャー座標を反映
@@ -172,7 +186,6 @@ void DrawMap(void)
 		// １枚のポリゴンの頂点とテクスチャ座標を設定
 		SetSpriteColor(g_VertexBuffer, px, py, pw, ph, tx, ty, tw, th,
 			XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
-
 		// ポリゴン描画
 		GetDeviceContext()->Draw(4, 0);
 
