@@ -40,7 +40,7 @@ SOUNDPARAM g_aParam[SOUND_LABEL_MAX] =
 	{ (char*)"data/BGM/NormalBGM2.wav", -1 },	// BGM’Êí2
 
 	{ (char*)"data/BGM/escapedrum.wav", -1 },	// BGM“¦‚°‚é‚Æ‚«
-	{ (char*)"data/BGM/heartbeatupup.wav", -1 },
+	{ (char*)"data/BGM/heartbeatupup.wav", -1 },//S‰¹i‘¬‚¢j
 
 
 
