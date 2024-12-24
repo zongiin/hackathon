@@ -121,7 +121,7 @@ void UpdateObjlight(void)
 	}
 
 	{	// ポイントライトのテスト
-		LIGHT* light = GetLightData(1);
+		LIGHT* light = GetLightData(3);
 		XMFLOAT3 pos = g_Objlight[0].pos;
 		pos.y += 20.0f;
 
@@ -130,7 +130,7 @@ void UpdateObjlight(void)
 		light->Ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 		light->Type = LIGHT_TYPE_POINT;
 		light->Enable = TRUE;
-		SetLightData(1, light);
+		SetLightData(3, light);
 
 
 		//XMFLOAT3 pos = g_Objlight[1].pos;
