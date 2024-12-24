@@ -25,6 +25,7 @@
 #include "collision.h"
 #include "debugproc.h"
 #include "hall.h"
+#include "objlight.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -76,9 +77,9 @@ HRESULT InitGame(void)
 
 	// パーティクルの初期化
 	//InitParticle();
+	InitObjlight();
 
-	// BGM再生
-	PlaySound(SOUND_LABEL_BGM_sample001);
+
 
 	return S_OK;
 }
@@ -102,6 +103,7 @@ void UninitGame(void)
 	// エネミーの終了処理
 	//UninitEnemy();
 
+	UninitObjlight();
 	// プレイヤーの終了処理
 	UninitPlayer();
 
@@ -130,7 +132,7 @@ void UpdateGame(void)
 
 #endif
 
-	if(g_bPause == FALSE)
+	if (g_bPause == FALSE)
 		return;
 
 	// プレイヤーの更新処理
@@ -153,6 +155,7 @@ void UpdateGame(void)
 	// 当たり判定処理
 	CheckHit();
 
+	UpdateObjlight();
 	// スコアの更新処理
 	UpdateScore();
 }
@@ -179,7 +182,7 @@ void DrawGame0(void)
 
 	// パーティクルの描画処理
 	//DrawParticle();
-
+	GetObjlight();
 
 	// 2Dの物を描画する処理
 	// Z比較なし

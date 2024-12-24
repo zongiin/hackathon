@@ -35,41 +35,10 @@
 //*****************************************************************************
 static OBJLIGHT			g_Objlight[MAX_OBJLIGHT];				// エネミー
 
-int g_Objlight_load = 0;
 
 
-static INTERPOLATION_DATA g_MoveTbl0[] = {	// pos, rot, scl, frame
-	{ XMFLOAT3(0.0f,87.0f, 20.0f), XMFLOAT3(3.14f, 0.0f, 3.14f), XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-	{ XMFLOAT3(-200.0f, 87.0f, 20.0f), XMFLOAT3(0.0f, 3.14f, 0.0f), XMFLOAT3(200.0f, 200.0f, 200.0f), 60 * 2 },
-	{ XMFLOAT3(-200.0f, 87.0f, 200.0f), XMFLOAT3(3.14f, 0.0f, 3.14f), XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
 
-};
 
-static INTERPOLATION_DATA g_MoveTbl1[] = {	// pos, rot, scl, frame
-	{ XMFLOAT3(30.0f, 87.0f,  0.0f),	 XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-	{ XMFLOAT3(220.0f, 87.0f,  0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f),XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-	{ XMFLOAT3(20.0f, 87.0f, 200.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-	{ XMFLOAT3(-180.0f, 87.0f,  0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f),XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-	{ XMFLOAT3(20.0f, 87.0f, -200.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-
-};
-
-static INTERPOLATION_DATA g_MoveTbl2[] = {	// pos, rot, scl, frame
-	{ XMFLOAT3(-30.0f, 87.0f, 0.0f),	 XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-	{ XMFLOAT3(-220.0f, 87.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f),XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-	{ XMFLOAT3(-20.0f, 87.0f, -200.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-	{ XMFLOAT3(180.0f, 87.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f),XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-	{ XMFLOAT3(-20.0f, 87.0f, 200.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(100.0f, 100.0f, 100.0f), 60 * 2 },
-
-};
-
-static INTERPOLATION_DATA* g_MoveTblAdr[] =
-{
-	g_MoveTbl0,
-	g_MoveTbl1,
-	g_MoveTbl2,
-
-};
 
 //=============================================================================
 // 初期化処理
@@ -81,9 +50,9 @@ HRESULT InitObjlight(void)
 		LoadModel(MODEL_OBJLIGHT, &g_Objlight[i].model);
 		g_Objlight[i].load = TRUE;
 
-		g_Objlight[i].pos = XMFLOAT3(-50.0f + i * 30.0f, 87.0f, 20.0f);
+		g_Objlight[i].pos = XMFLOAT3(0.0, 7.0f, 20.0f);
 		g_Objlight[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		g_Objlight[i].scl = XMFLOAT3(100.0f, 100.0f, 100.0f);
+		g_Objlight[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 
 		g_Objlight[i].spd = 0.0f;			// 移動スピードクリア
 		//g_Objlight[i].size = OBJLIGHT_SIZE;	// 当たり判定の大きさ
@@ -100,29 +69,9 @@ HRESULT InitObjlight(void)
 		pos.y -= (OBJLIGHT_OFFSET_Y - 0.1f);
 		g_Objlight[i].shadowIdx = CreateShadow(pos, OBJLIGHT_SHADOW_SIZE, OBJLIGHT_SHADOW_SIZE);
 
-		g_Objlight[i].time = 0.0f;			// 線形補間用のタイマーをクリア
-		g_Objlight[i].tblNo = 0;			// 再生する行動データテーブルNoをセット
-		g_Objlight[i].tblMax = 0;			// 再生する行動データテーブルのレコード数をセット
-
-
 		g_Objlight[i].use = TRUE;		// TRUE:生きてる
 
 	}
-
-	// 0番だけ線形補間で動かしてみる
-	g_Objlight[0].time = 0.0f;		// 線形補間用のタイマーをクリア
-	g_Objlight[0].tblNo = 0;		// 再生するアニメデータの先頭アドレスをセット
-	g_Objlight[0].tblMax = sizeof(g_MoveTbl0) / sizeof(INTERPOLATION_DATA);	// 再生するアニメデータのレコード数をセット
-
-	// 1番だけ線形補間で動かしてみる
-	g_Objlight[1].time = 0.0f;		// 線形補間用のタイマーをクリア
-	g_Objlight[1].tblNo = 1;		// 再生するアニメデータの先頭アドレスをセット
-	g_Objlight[1].tblMax = sizeof(g_MoveTbl1) / sizeof(INTERPOLATION_DATA);	// 再生するアニメデータのレコード数をセット
-
-	// 2番だけ線形補間で動かしてみる
-	g_Objlight[2].time = 0.0f;		// 線形補間用のタイマーをクリア
-	g_Objlight[2].tblNo = 2;		// 再生するアニメデータの先頭アドレスをセット
-	g_Objlight[2].tblMax = sizeof(g_MoveTbl2) / sizeof(INTERPOLATION_DATA);	// 再生するアニメデータのレコード数をセット
 
 	return S_OK;
 }
@@ -149,57 +98,7 @@ void UninitObjlight(void)
 //=============================================================================
 void UpdateObjlight(void)
 {
-	// エネミーを動かす場合は、影も合わせて動かす事を忘れないようにね！
-	for (int i = 0; i < MAX_OBJLIGHT; i++)
-	{
-		if (g_Objlight[i].use == TRUE)		// このエネミーが使われている？
-		{								// Yes
 
-			// 移動処理
-			if (g_Objlight[i].tblMax > 0)	// 線形補間を実行する？
-			{	// 線形補間の処理
-				int nowNo = (int)g_Objlight[i].time;			// 整数分であるテーブル番号を取り出している
-				int maxNo = g_Objlight[i].tblMax;				// 登録テーブル数を数えている
-				int nextNo = (nowNo + 1) % maxNo;			// 移動先テーブルの番号を求めている
-				INTERPOLATION_DATA* tbl = g_MoveTblAdr[g_Objlight[i].tblNo];	// 行動テーブルのアドレスを取得
-
-				XMVECTOR nowPos = XMLoadFloat3(&tbl[nowNo].pos);	// XMVECTORへ変換
-				XMVECTOR nowRot = XMLoadFloat3(&tbl[nowNo].rot);	// XMVECTORへ変換
-				XMVECTOR nowScl = XMLoadFloat3(&tbl[nowNo].scl);	// XMVECTORへ変換
-
-				XMVECTOR Pos = XMLoadFloat3(&tbl[nextNo].pos) - nowPos;	// XYZ移動量を計算している
-				XMVECTOR Rot = XMLoadFloat3(&tbl[nextNo].rot) - nowRot;	// XYZ回転量を計算している
-				XMVECTOR Scl = XMLoadFloat3(&tbl[nextNo].scl) - nowScl;	// XYZ拡大率を計算している
-
-				float nowTime = g_Objlight[i].time - nowNo;	// 時間部分である少数を取り出している
-
-				Pos *= nowTime;								// 現在の移動量を計算している
-				Rot *= nowTime;								// 現在の回転量を計算している
-				Scl *= nowTime;								// 現在の拡大率を計算している
-
-				// 計算して求めた移動量を現在の移動テーブルXYZに足している＝表示座標を求めている
-				XMStoreFloat3(&g_Objlight[i].pos, nowPos + Pos);
-
-				// 計算して求めた回転量を現在の移動テーブルに足している
-				XMStoreFloat3(&g_Objlight[i].rot, nowRot + Rot);
-
-				// 計算して求めた拡大率を現在の移動テーブルに足している
-				XMStoreFloat3(&g_Objlight[i].scl, nowScl + Scl);
-
-				// frameを使て時間経過処理をする
-				g_Objlight[i].time += 1.0f / tbl[nowNo].frame;	// 時間を進めている
-				if ((int)g_Objlight[i].time >= maxNo)			// 登録テーブル最後まで移動したか？
-				{
-					g_Objlight[i].time -= maxNo;				// ０番目にリセットしつつも小数部分を引き継いでいる
-				}
-
-			}
-			//// 影もプレイヤーの位置に合わせる
-			//XMFLOAT3 pos = g_Objlight[i].pos;
-			//pos.y -= (ENEMY_OFFSET_Y - 0.1f);
-			//SetPositionShadow(g_Objlight[i].shadowIdx, pos);
-		}
-	}
 
 #ifdef _DEBUG
 	//if (GetKeyboardTrigger(DIK_P))
