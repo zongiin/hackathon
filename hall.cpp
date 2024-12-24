@@ -14,6 +14,7 @@
 #include "shadow.h"
 #include "player.h"
 #include "prop.h"
+#include "enemy.h"
 
 #include "debugproc.h"
 
@@ -113,6 +114,7 @@ void UpdateHall(void)
 		{
 			props[i].pos.z -= 2400.0f;
 		}
+		GetEnemy()->pos.z -= 2400.0f;
 		g_loop = 1;
 	}
 
