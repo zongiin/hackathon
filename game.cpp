@@ -65,7 +65,7 @@ HRESULT InitGame(void)
 	InitPlayer();
 
 	// エネミーの初期化
-	//InitEnemy();
+	InitEnemy();
 
 	InitHall();
 
@@ -102,7 +102,7 @@ void UninitGame(void)
 
 	UninitMap();
 	// エネミーの終了処理
-	//UninitEnemy();
+	UninitEnemy();
 
 	UninitObjlight();
 	// プレイヤーの終了処理
@@ -140,7 +140,7 @@ void UpdateGame(void)
 	UpdatePlayer();
 
 	// エネミーの更新処理
-	//UpdateEnemy();
+	UpdateEnemy();
 
 	UpdateMap();
 
@@ -171,7 +171,7 @@ void DrawGame0(void)
 	DrawShadow();
 	DrawHall();
 	// エネミーの描画処理
-	//DrawEnemy();
+	DrawEnemy();
 
 	// プレイヤーの描画処理
 	DrawPlayer();
