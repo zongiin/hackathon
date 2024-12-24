@@ -14,6 +14,7 @@
 #include "shadow.h"
 
 #include "debugproc.h"
+#include "objlight.h"
 
 
 //*****************************************************************************
@@ -194,6 +195,7 @@ void UninitPlayer(void)
 void UpdatePlayer(void)
 {
 	CAMERA *cam = GetCamera();
+	OBJLIGHT* Objlight = GetObjlight();
 
 	g_Player.spd *= 0.7f;
 
@@ -279,38 +281,41 @@ void UpdatePlayer(void)
 		}
 
 	}
+	Objlight->pos.z = g_Player.pos.z+20;
 
 
-	// ポイントライトのテスト
-	{
-		LIGHT *light = GetLightData(1);
-		XMFLOAT3 pos = g_Player.pos;
-		pos.y = 50.0f;
-		pos.z += 100.0f;
 
-		light->Position = pos;
-		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
-		light->Ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
-		light->Type = LIGHT_TYPE_POINT;
-		light->Enable = TRUE;
-		light->Attenuation = 100.0f;
-		SetLightData(1, light);
-	}
 
-	{
-		LIGHT* light = GetLightData(1);
-		XMFLOAT3 pos = g_Player.pos;
-		pos.y = 50.0f;
-		pos.z -= 100.0f;
+	//// ポイントライトのテスト
+	//{
+	//	LIGHT *light = GetLightData(1);
+	//	XMFLOAT3 pos = g_Player.pos;
+	//	pos.y = 50.0f;
+	//	pos.z += 100.0f;
 
-		light->Position = pos;
-		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
-		light->Ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
-		light->Type = LIGHT_TYPE_POINT;
-		light->Enable = TRUE;
-		light->Attenuation = 100.0f;
-		SetLightData(2, light);
-	}
+	//	light->Position = pos;
+	//	light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
+	//	light->Ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
+	//	light->Type = LIGHT_TYPE_POINT;
+	//	light->Enable = TRUE;
+	//	light->Attenuation = 100.0f;
+	//	SetLightData(1, light);
+	//}
+
+	//{
+	//	LIGHT* light = GetLightData(1);
+	//	XMFLOAT3 pos = g_Player.pos;
+	//	pos.y = 50.0f;
+	//	pos.z -= 100.0f;
+
+	//	light->Position = pos;
+	//	light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
+	//	light->Ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
+	//	light->Type = LIGHT_TYPE_POINT;
+	//	light->Enable = TRUE;
+	//	light->Attenuation = 100.0f;
+	//	SetLightData(2, light);
+	//}
 
 
 
