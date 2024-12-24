@@ -153,7 +153,7 @@
     <ClInclude Include="meshfield.h" />
     <ClInclude Include="meshwall.h" />
     <ClInclude Include="model.h" />
-    <ClInclude Include="modescore.h" />
+    <ClInclude Include="moderesult.h" />
     <ClInclude Include="modetitle.h" />
     <ClInclude Include="objlight.h" />
     <ClInclude Include="particle.h" />
@@ -182,7 +182,7 @@
     <ClCompile Include="meshfield.cpp" />
     <ClCompile Include="meshwall.cpp" />
     <ClCompile Include="model.cpp" />
-    <ClCompile Include="modescore.cpp" />
+    <ClCompile Include="moderesult.cpp" />
     <ClCompile Include="modetitle.cpp" />
     <ClCompile Include="objlight.cpp" />
     <ClCompile Include="particle.cpp" />
