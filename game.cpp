@@ -61,7 +61,7 @@ HRESULT InitGame(void)
 	InitShadow();
 
 	// プレイヤーの初期化
-	//InitPlayer();
+	InitPlayer();
 
 	// エネミーの初期化
 	//InitEnemy();
@@ -103,7 +103,7 @@ void UninitGame(void)
 	//UninitEnemy();
 
 	// プレイヤーの終了処理
-	//UninitPlayer();
+	UninitPlayer();
 
 	// 影の終了処理
 	UninitShadow();
@@ -170,7 +170,7 @@ void DrawGame0(void)
 	//DrawEnemy();
 
 	// プレイヤーの描画処理
-	//DrawPlayer();
+	DrawPlayer();
 
 	// 弾の描画処理
 	DrawBullet();
