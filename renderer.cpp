@@ -119,7 +119,7 @@ static FOG_CBUFFER		g_Fog;
 
 static FUCHI			g_Fuchi;
 
-static float g_ClearColor[4] = { 0.6f, 0.6f, 1.0f, 1.0f };	// îwåiêF
+static float g_ClearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };	// îwåiêF
 
 
 ID3D11Device* GetDevice( void )

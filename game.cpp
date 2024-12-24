@@ -132,14 +132,14 @@ void UpdateGame(void)
 
 	if(g_bPause == FALSE)
 		return;
-
+	UpdateHall();
 	// プレイヤーの更新処理
 	UpdatePlayer();
 
 	// エネミーの更新処理
 	//UpdateEnemy();
 
-	UpdateHall();
+	
 
 	// 弾の更新処理
 	UpdateBullet();

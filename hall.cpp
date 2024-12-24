@@ -12,6 +12,7 @@
 #include "model.h"
 #include "hall.h"
 #include "shadow.h"
+#include "player.h"
 
 #include "debugproc.h"
 
@@ -36,6 +37,8 @@ static HALL		g_Hall[MAX_HALL];						// プレイヤー
 static DX11_MODEL		g_HallModel;						// プレイヤー
 
 static BOOL g_Load = FALSE;
+static int g_backIdx = 0;
+static int g_loop = 1;
 
 //=============================================================================
 // 初期化処理
@@ -49,7 +52,7 @@ HRESULT InitHall(void)
 
 	for (int i = 0; i < MAX_HALL; i++)
 	{
-		g_Hall[i].pos = XMFLOAT3(0.0f, 0.0f, 0.0f + (0.02f)*24000*i);
+		g_Hall[i].pos = XMFLOAT3(0.0f, 0.0f, 0.0f + (0.02f)*24000*(i-1));
 		g_Hall[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_Hall[i].scl = XMFLOAT3(0.02f, 0.02f, 0.02f);
 
@@ -61,6 +64,9 @@ HRESULT InitHall(void)
 		// クォータニオンの初期化
 		XMStoreFloat4(&g_Hall[i].Quaternion, XMQuaternionIdentity());
 	}
+
+	g_backIdx = 0;
+	g_loop = 1;
 
 	return S_OK;
 }
@@ -85,6 +91,32 @@ void UninitHall(void)
 //=============================================================================
 void UpdateHall(void)
 {
+	PLAYER* player = GetPlayer();
+
+	
+	if (player->pos.z > g_loop * 480.0f)
+	{
+		g_loop++;
+		g_Hall[g_backIdx].pos.z = g_Hall[(g_backIdx + MAX_HALL-1) % MAX_HALL].pos.z + 480.0f;
+		g_backIdx = (g_backIdx + 1) % MAX_HALL;
+	}
+
+	if (player->pos.z > 2400.0f)
+	{
+		player->pos.z -= 2400.0f;
+		for (int i = 0; i < MAX_HALL; i++)
+		{
+			g_Hall[i].pos.z -= 2400.0f;
+		}
+		g_loop = 1;
+	}
+
+/*
+	while ((player->pos.z) > 480.0f)
+	{
+		player->pos.z -= 480.0f;
+	}*/
+
 
 #ifdef _DEBUG
 	// デバッグ表示

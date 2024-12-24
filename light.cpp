@@ -26,7 +26,7 @@ static LIGHT	g_Light[LIGHT_MAX];
 
 static FOG		g_Fog;
 
-static BOOL		g_FogEnable = TRUE;
+static BOOL		g_FogEnable = FALSE;
 
 
 //=============================================================================
@@ -52,7 +52,7 @@ void InitLight(void)
 	g_Light[0].Direction = XMFLOAT3( 0.0f, -1.0f, 0.0f );		// 光の向き
 	g_Light[0].Diffuse   = XMFLOAT4( 1.0f, 1.0f, 1.0f, 1.0f );	// 光の色
 	g_Light[0].Type = LIGHT_TYPE_DIRECTIONAL;					// 並行光源
-	g_Light[0].Enable = TRUE;									// このライトをON
+	g_Light[0].Enable = FALSE;									// このライトをON
 	SetLight(0, &g_Light[0]);									// これで設定している
 
 
