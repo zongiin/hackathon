@@ -123,7 +123,7 @@ void UpdateObjlight(void)
 	{	// ポイントライトのテスト
 		LIGHT* light = GetLightData(3);
 		XMFLOAT3 pos = g_Objlight[0].pos;
-		pos.y += 20.0f;
+		pos.y += 7.0f;
 
 		light->Position = pos;
 		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);

@@ -286,36 +286,24 @@ void UpdatePlayer(void)
 
 
 
-	// ポイントライトのテスト
+
 	{
-		LIGHT *light = GetLightData(1);
-		XMFLOAT3 pos = g_Player.pos;
-		pos.y = 50.0f;
-		pos.z += 100.0f;
+		LIGHT* light = GetLightData(0);
+		XMFLOAT3 pos = cam->at;//cam->pos;
+
+		light->Direction = cam->at;
 
 		light->Position = pos;
 		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
-		light->Ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
+
+		light->Ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 		light->Type = LIGHT_TYPE_POINT;
 		light->Enable = TRUE;
-		light->Attenuation = 100.0f;
-		SetLightData(1, light);
+		light->Attenuation = 10.0f;
+		SetLightData(0, light);
 	}
 
-	{
-		LIGHT* light = GetLightData(2);
-		XMFLOAT3 pos = g_Player.pos;
-		pos.y = 50.0f;
-		pos.z -= 100.0f;
 
-		light->Position = pos;
-		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
-		light->Ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
-		light->Type = LIGHT_TYPE_POINT;
-		light->Enable = TRUE;
-		light->Attenuation = 100.0f;
-		SetLightData(2, light);
-	}
 
 
 
