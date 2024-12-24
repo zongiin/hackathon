@@ -284,11 +284,11 @@ int GetViewPortType(void)
 void SetCameraAT(XMFLOAT3 pos)
 {
 	// カメラの注視点を引数の座標にしてみる
-	g_Camera.at = pos;
+	g_Camera.pos = pos;
 
 	// カメラの視点をカメラのY軸回転に対応させている
-	g_Camera.pos.x = g_Camera.at.x - sinf(g_Camera.rot.y) * g_Camera.len;
-	g_Camera.pos.z = g_Camera.at.z - cosf(g_Camera.rot.y) * g_Camera.len;
+	g_Camera.at.x = g_Camera.pos.x - sinf(g_Camera.rot.y) * g_Camera.len;
+	g_Camera.at.z = g_Camera.pos.z - cosf(g_Camera.rot.y) * g_Camera.len;
 
 }
 

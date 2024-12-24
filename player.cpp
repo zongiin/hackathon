@@ -197,30 +197,18 @@ void UpdatePlayer(void)
 
 	g_Player.spd *= 0.7f;
 
-	// 移動処理
-	if (GetKeyboardPress(DIK_LEFT))
-	{
-		g_Player.spd = VALUE_MOVE;
-		//g_Player.pos.x -= g_Player.spd;
-		roty = XM_PI / 2;
-	}
-	if (GetKeyboardPress(DIK_RIGHT))
-	{
-		g_Player.spd = VALUE_MOVE;
-		//g_Player.pos.x += g_Player.spd;
-		roty = -XM_PI / 2;
-	}
+
 	if (GetKeyboardPress(DIK_UP))
 	{
 		g_Player.spd = VALUE_MOVE;
 		//g_Player.pos.z += g_Player.spd;
-		roty = XM_PI;
+		cam->rot.y = XM_PI;
 	}
 	if (GetKeyboardPress(DIK_DOWN))
 	{
 		g_Player.spd = VALUE_MOVE;
 		//g_Player.pos.z -= g_Player.spd;
-		roty = 0.0f;
+		cam->rot.y= 0.0f;
 	}
 
 #ifdef _DEBUG
@@ -231,14 +219,15 @@ void UpdatePlayer(void)
 		roty = 0.0f;
 	}
 #endif
-
-
-	{	// 押した方向にプレイヤーを移動させる
+	g_Player.rot.y = cam->rot.y;
+	if (g_Player.spd > 0.0f)
+	{
+		// 押した方向にプレイヤーを移動させる
 		// 押した方向にプレイヤーを向かせている所
-		g_Player.rot.y = roty + cam->rot.y;
 
-		g_Player.pos.x -= sinf(g_Player.rot.y) * g_Player.spd;
-		g_Player.pos.z -= cosf(g_Player.rot.y) * g_Player.spd;
+		g_Player.pos.x += sinf(cam->rot.y) * g_Player.spd;
+		g_Player.pos.z += cosf(cam->rot.y) * g_Player.spd;
+
 	}
 
 
@@ -316,19 +305,19 @@ void UpdatePlayer(void)
 	}
 
 
-	// ポイントライトのテスト
-	{
-		LIGHT *light = GetLightData(1);
-		XMFLOAT3 pos = g_Player.pos;
-		pos.y += 20.0f;
+	//// ポイントライトのテスト
+	//{
+	//	LIGHT *light = GetLightData(1);
+	//	XMFLOAT3 pos = g_Player.pos;
+	//	pos.y += 20.0f;
 
-		light->Position = pos;
-		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-		light->Ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-		light->Type = LIGHT_TYPE_POINT;
-		light->Enable = TRUE;
-		SetLightData(1, light);
-	}
+	//	light->Position = pos;
+	//	light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	//	light->Ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	//	light->Type = LIGHT_TYPE_POINT;
+	//	light->Enable = TRUE;
+	//	SetLightData(1, light);
+	//}
 
 
 
