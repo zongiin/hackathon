@@ -49,7 +49,7 @@ HRESULT InitHall(void)
 
 	for (int i = 0; i < MAX_HALL; i++)
 	{
-		g_Hall[i].pos = XMFLOAT3(0.0f, 0.0f, 0.0f + (0.02f)*2400*i);
+		g_Hall[i].pos = XMFLOAT3(0.0f, 0.0f, 0.0f + (0.02f)*24000*i);
 		g_Hall[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_Hall[i].scl = XMFLOAT3(0.02f, 0.02f, 0.02f);
 
@@ -118,7 +118,7 @@ void DrawHall(void)
 		mtxWorld = XMMatrixMultiply(mtxWorld, mtxScl);
 
 		// ‰ñ“]‚ð”½‰f
-		mtxRot = XMMatrixRotationRollPitchYaw(g_Hall[i].rot.x, g_Hall[i].rot.y, g_Hall[i].rot.z);
+		mtxRot = XMMatrixRotationRollPitchYaw(g_Hall[i].rot.x, g_Hall[i].rot.y+XM_PI, g_Hall[i].rot.z);
 		mtxWorld = XMMatrixMultiply(mtxWorld, mtxRot);
 
 		// ƒNƒH[ƒ^ƒjƒIƒ“‚ð”½‰f
