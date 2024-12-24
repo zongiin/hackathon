@@ -17,7 +17,7 @@
 //*****************************************************************************
 // プロトタイプ宣言
 //*****************************************************************************
-HRESULT InitModetitle(void);
+void InitModetitle(void);
 void UninitModetitle(void);
 void UpdateModetitle(void);
 void DrawModetitle(void);
