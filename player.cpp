@@ -12,9 +12,9 @@
 #include "model.h"
 #include "player.h"
 #include "shadow.h"
-#include "bullet.h"
+
 #include "debugproc.h"
-#include "meshfield.h"
+
 
 //*****************************************************************************
 // マクロ定義
@@ -231,28 +231,6 @@ void UpdatePlayer(void)
 	}
 
 
-	// レイキャストして足元の高さを求める
-	XMFLOAT3 HitPosition;		// 交点
-	XMFLOAT3 Normal;			// ぶつかったポリゴンの法線ベクトル（向き）
-	BOOL ans = RayHitField(g_Player.pos, &HitPosition, &Normal);
-	if (ans)
-	{	// 当たっていたから波の上に乗せている
-		g_Player.pos.y = HitPosition.y + PLAYER_OFFSET_Y;
-	}
-	else
-	{
-		g_Player.pos.y = PLAYER_OFFSET_Y;
-		Normal = XMFLOAT3(0.0f, 1.0f, 0.0f);
-	}
-
-
-	// 弾発射処理
-	if (GetKeyboardTrigger(DIK_SPACE))
-	{
-		SetBullet(g_Player.pos, g_Player.rot);
-	}
-
-
 	// 影もプレイヤーの位置に合わせる
 	XMFLOAT3 pos = g_Player.pos;
 	pos.y -= (PLAYER_OFFSET_Y - 0.1f);
@@ -321,40 +299,11 @@ void UpdatePlayer(void)
 
 
 
-	//////////////////////////////////////////////////////////////////////
-	// 姿勢制御
-	//////////////////////////////////////////////////////////////////////
-
-	XMVECTOR vx, nvx, up;
-	XMVECTOR quat;
-	float len, angle;
-
-
-	g_Player.UpVector = Normal;		// プレイヤーを傾ける法線ベクトル
-	up = { 0.0f, 1.0f, 0.0f, 0.0f };
-	vx = XMVector3Cross(up, XMLoadFloat3(&g_Player.UpVector));
-
-	nvx = XMVector3Length(vx);
-	XMStoreFloat(&len, nvx);
-	nvx = XMVector3Normalize(vx);
-	//nvx = vx / len;
-	angle = asinf(len);
-
-	//quat = XMQuaternionIdentity();
-
-//	quat = XMQuaternionRotationAxis(nvx, angle);
-	quat = XMQuaternionRotationNormal(nvx, angle);
-
-
-	quat = XMQuaternionSlerp(XMLoadFloat4(&g_Player.Quaternion), quat, 0.05f);
-	XMStoreFloat4(&g_Player.Quaternion, quat);
-
-
 
 
 #ifdef _DEBUG
 	// デバッグ表示
-	PrintDebugProc("Player X:%f Y:%f Z:% N:%f\n", g_Player.pos.x, g_Player.pos.y, g_Player.pos.z, Normal.y);
+	PrintDebugProc("Player X:%f Y:%f Z:%f\n", g_Player.pos.x, g_Player.pos.y, g_Player.pos.z);
 #endif
 
 }
