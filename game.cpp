@@ -26,6 +26,7 @@
 #include "debugproc.h"
 #include "hall.h"
 #include "objlight.h"
+#include "prop.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -55,9 +56,6 @@ HRESULT InitGame(void)
 {
 	g_ViewPortType_Game = TYPE_FULL_SCREEN;
 
-	// フィールドの初期化
-	InitMeshField(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), 100, 100, 13.0f, 13.0f);
-
 	// ライトを有効化	// 影の初期化処理
 	InitShadow();
 
@@ -66,6 +64,7 @@ HRESULT InitGame(void)
 
 	// エネミーの初期化
 	//InitEnemy();
+	InitProp();
 
 	InitHall();
 
@@ -99,7 +98,7 @@ void UninitGame(void)
 	UninitBullet();
 
 	UninitHall();
-
+	UninitProp();
 	// エネミーの終了処理
 	//UninitEnemy();
 
@@ -135,6 +134,7 @@ void UpdateGame(void)
 	if (g_bPause == FALSE)
 		return;
 	UpdateHall();
+	UpdateProp();
 	// プレイヤーの更新処理
 	UpdatePlayer();
 
@@ -167,8 +167,11 @@ void DrawGame0(void)
 {
 	// 3Dの物を描画する処理
 	// 影の描画処理
+	SetDepthEnable(TRUE);
+	SetLightEnable(TRUE);
 	DrawShadow();
 	DrawHall();
+	DrawProp();
 	// エネミーの描画処理
 	//DrawEnemy();
 

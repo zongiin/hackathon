@@ -37,4 +37,6 @@ void UninitProp(void);
 void UpdateProp(void);
 void DrawProp(void);
 
+PROP* GetProps(void);
+
 int GetRand(int min, int max);
