@@ -33,6 +33,19 @@ DWORD g_aSizeAudio[SOUND_LABEL_MAX] = {};					// オーディオデータサイズ
 SOUNDPARAM g_aParam[SOUND_LABEL_MAX] =
 {
 	{ (char*)"data/BGM/sample000.wav", -1 },	// BGM0
+
+
+
+	{ (char*)"data/BGM/NormalBGM1.wav", -1 },	// BGM通常時1
+	{ (char*)"data/BGM/NormalBGM2.wav", -1 },	// BGM通常時2
+
+	{ (char*)"data/BGM/escapedrum.wav", -1 },	// BGM逃げるとき
+	{ (char*)"data/BGM/heartbeatupup.wav", -1 },
+
+
+
+
+
 	{ (char*)"data/BGM/bgm_maoudamashii_neorock73.wav", -1 },	// BGM1
 	{ (char*)"data/BGM/sample001.wav", -1 },	// BGM2
 	{ (char*)"data/SE/bomb000.wav", 0 },		// 弾発射音

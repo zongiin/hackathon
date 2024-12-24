@@ -14,6 +14,19 @@
 enum 
 {
 	SOUND_LABEL_BGM_sample000,	// BGM0
+
+	SOUND_LABEL_BGM_NormalBGM1,// BGM’ÊíŽž1
+	SOUND_LABEL_BGM_NormalBGM2,// BGM’ÊíŽž2
+	SOUND_LABEL_SE_heartbeatupup,// BGM’ÊíŽž2
+	SOUND_LABEL_BGM_escapedrum,//BGM“¦‚°‚é‚Æ‚«
+	SOUND_LABEL_SE_run,//BGM“¦‚°‚é‚Æ‚«
+
+
+
+
+
+
+
 	SOUND_LABEL_BGM_sample001,	// BGM1
 	SOUND_LABEL_BGM_sample002,	// BGM2
 	SOUND_LABEL_SE_bomb000,		// ”š”­‰¹
