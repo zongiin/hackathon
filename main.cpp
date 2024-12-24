@@ -19,6 +19,7 @@
 #include "result.h"
 #include "debugproc.h"
 #include "modetitle.h"
+#include "moderesult.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -309,7 +310,7 @@ void Update(void)
 		break;
 
 	case MODE_RESULT:		// リザルト画面の更新
-		UpdateResult();
+		UpdateModeresult();
 		break;
 	}
 
@@ -350,7 +351,7 @@ void Draw(void)
 		// ライティングを無効
 		SetLightEnable(FALSE);
 
-		DrawResult();
+		DrawModeresult();
 
 		// ライティングを有効に
 		SetLightEnable(TRUE);
@@ -421,7 +422,7 @@ void SetMode(int mode)
 	// モードを変える前に全部メモリを解放しちゃう
 
 	// タイトル画面の終了処理
-	UninitModetitle();
+	UninitModeresult();
 
 	// ゲーム画面の終了処理
 	UninitGame();
@@ -449,7 +450,7 @@ void SetMode(int mode)
 
 	case MODE_RESULT:
 		// リザルト画面の初期化
-		InitResult();
+		InitModeresult();
 		break;
 
 		// ゲーム終了時の処理
