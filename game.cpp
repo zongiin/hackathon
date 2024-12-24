@@ -65,6 +65,8 @@ HRESULT InitGame(void)
 	// エネミーの初期化
 	InitEnemy();
 
+	InitProp();
+
 	InitHall();
 
 	// 弾の初期化
