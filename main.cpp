@@ -436,16 +436,17 @@ void SetMode(int mode)
 	switch (g_Mode)
 	{
 	case MODE_TITLE:
-		PlaySound(SOUND_LABEL_BGM_NormalBGM1);
-
+		PlaySound(SOUND_LABEL_BGM_unrest1);
+		PlaySound(SOUND_LABEL_BGM_unrest2);
 		// タイトル画面の初期化
 		InitModetitle();
 		break;
 
 	case MODE_GAME:
-		
-		PlaySound(SOUND_LABEL_BGM_escapedrum);
-		PlaySound(SOUND_LABEL_SE_run);
+		PlaySound(SOUND_LABEL_BGM_escapeintroduction);
+		PlaySound(SOUND_LABEL_BGM_escapelow1);
+		PlaySound(SOUND_LABEL_BGM_escapelow2);
+		PlaySound(SOUND_LABEL_BGM_escapemelody);
 		// カメラもここで初期化しておく事にした
 		UninitCamera();
 		InitCamera();
@@ -454,9 +455,6 @@ void SetMode(int mode)
 		break;
 
 	case MODE_RESULT:
-		PlaySound(SOUND_LABEL_BGM_escapedrum);
-		PlaySound(SOUND_LABEL_SE_run);
-
 		// リザルト画面の初期化
 		InitModeresult();
 		break;

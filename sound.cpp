@@ -32,19 +32,18 @@ DWORD g_aSizeAudio[SOUND_LABEL_MAX] = {};					// オーディオデータサイズ
 // 各音素材のパラメータ
 SOUNDPARAM g_aParam[SOUND_LABEL_MAX] =
 {
-	{ (char*)"data/BGM/sample000.wav", -1 },	// BGM0
-
-
-
+	{ (char*)"data/BGM/unrest1.wav", -1 },		// BGM通り抜ける時1
 	{ (char*)"data/BGM/NormalBGM1.wav", -1 },	// BGM通常時1
+	{ (char*)"data/BGM/unrest2.wav", -1 },		// BGM通り抜ける2
 	{ (char*)"data/BGM/NormalBGM2.wav", -1 },	// BGM通常時2
-
-	{ (char*)"data/BGM/escapedrum.wav", -1 },	// BGM逃げるとき
-	{ (char*)"data/BGM/heartbeatupup.wav", -1 },//心音（速い）
-
-
-
-
+	{ (char*)"data/BGM/escapeintroduction.wav", -1 },	// BGM逃げるとき
+	{ (char*)"data/BGM/escapelow1.wav", -1 },	// BGM逃げるとき
+	{ (char*)"data/BGM/escapelow2.wav", -1 },	// BGM逃げるとき
+	{ (char*)"data/BGM/escapemelody.wav", -1 },	// BGM逃げるとき
+	{ (char*)"data/BGM/run.wav", -1 },	//走る
+	{ (char*)"data/BGM/walknormal.wav", -1 },	//歩く
+	//心音（速い）
+	//心音（速い）
 
 	{ (char*)"data/BGM/bgm_maoudamashii_neorock73.wav", -1 },	// BGM1
 	{ (char*)"data/BGM/sample001.wav", -1 },	// BGM2
