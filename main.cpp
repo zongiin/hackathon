@@ -436,8 +436,8 @@ void SetMode(int mode)
 	switch (g_Mode)
 	{
 	case MODE_TITLE:
-		PlaySound(SOUND_LABEL_BGM_unrest1);
-		PlaySound(SOUND_LABEL_BGM_unrest2);
+		PlaySound(SOUND_LABEL_BGM_NormalBGM1);
+
 		// ƒ^ƒCƒgƒ‹‰æ–Ê‚Ì‰Šú‰»
 		InitModetitle();
 		break;

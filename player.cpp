@@ -288,34 +288,34 @@ void UpdatePlayer(void)
 
 
 	{
-		LIGHT* light = GetLightData(1);
+		LIGHT* light = GetLightData(0);
 		XMFLOAT3 pos = g_Player.pos;//cam->pos;
-		pos.z += 20.0f;
-		pos.y += 100.0f;
-		light[1].Direction = XMFLOAT3(0.0f, 7.0f, 0.0f);
-		light[1].Position = pos;
-		light[1].Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 100.0f);
-		light[1].Ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
-		light[1].Type = LIGHT_TYPE_POINT;
-		light[1].Enable = TRUE;
-		light[1].Attenuation = 1000000.0f;
-		SetLightData(1, &light[1]);
+		pos.z += -25.0f;
+
+		light->Position = pos;
+		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
+
+		light->Ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+		light->Type = LIGHT_TYPE_POINT;
+		light->Enable = TRUE;
+		light->Attenuation = 100.0f;
+		SetLightData(0, light);
 	}
 
-	//{
-	//	LIGHT* light = GetLightData(1);
-	//	XMFLOAT3 pos = g_Player.pos;//cam->pos;
-	//	pos.z += 75.0f;
+	{
+		LIGHT* light = GetLightData(1);
+		XMFLOAT3 pos = g_Player.pos;//cam->pos;
+		pos.z += 75.0f;
 
-	//	light->Position = pos;
-	//	light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
+		light->Position = pos;
+		light->Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 50.0f);
 
-	//	light->Ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	//	light->Type = LIGHT_TYPE_POINT;
-	//	light->Enable = TRUE;
-	//	light->Attenuation = 100.0f;
-	//	SetLightData(1, light);
-	//}
+		light->Ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+		light->Type = LIGHT_TYPE_POINT;
+		light->Enable = TRUE;
+		light->Attenuation = 100.0f;
+		SetLightData(1, light);
+	}
 
 
 

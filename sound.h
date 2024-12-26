@@ -13,19 +13,12 @@
 //*****************************************************************************
 enum 
 {
-	SOUND_LABEL_BGM_unrest1,	// BGM0
+	SOUND_LABEL_BGM_sample000,	// BGM0
+
 	SOUND_LABEL_BGM_NormalBGM1,// BGMí èÌéû1
-	SOUND_LABEL_BGM_unrest2,	// BGM0
 	SOUND_LABEL_BGM_NormalBGM2,// BGMí èÌéû2
-	// BGMì¶Ç∞ÇÈÇ∆Ç´
-	SOUND_LABEL_BGM_escapeintroduction,	// BGM0
-	SOUND_LABEL_BGM_escapelow1,			// BGM0
-	SOUND_LABEL_BGM_escapelow2,			// BGM0
-	SOUND_LABEL_BGM_escapemelody,	// BGM0
-
-
-
-
+	SOUND_LABEL_SE_heartbeatupup,// BGMí èÌéû2
+	SOUND_LABEL_BGM_escapedrum,//BGMì¶Ç∞ÇÈÇ∆Ç´
 	SOUND_LABEL_SE_run,//BGMì¶Ç∞ÇÈÇ∆Ç´
 	SOUND_LABEL_SE_heartbeatupup,// BGMí èÌéû2
 	SOUND_LABEL_BGM_escapedrum,//BGMì¶Ç∞ÇÈÇ∆Ç´
