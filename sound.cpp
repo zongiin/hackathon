@@ -32,11 +32,9 @@ DWORD g_aSizeAudio[SOUND_LABEL_MAX] = {};					// オーディオデータサイズ
 // 各音素材のパラメータ
 SOUNDPARAM g_aParam[SOUND_LABEL_MAX] =
 {
-	{ (char*)"data/BGM/sample000.wav", -1 },	// BGM0
-
-
-
+	{ (char*)"data/BGM/unrest1.wav", -1 },		// BGM通り抜ける時1
 	{ (char*)"data/BGM/NormalBGM1.wav", -1 },	// BGM通常時1
+	{ (char*)"data/BGM/unrest2.wav", -1 },		// BGM通り抜ける2
 	{ (char*)"data/BGM/NormalBGM2.wav", -1 },	// BGM通常時2
 
 	{ (char*)"data/BGM/escapedrum.wav", -1 },	// BGM逃げるとき
