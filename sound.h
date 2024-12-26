@@ -19,24 +19,8 @@ enum
 	SOUND_LABEL_BGM_NormalBGM2,// BGMí èÌéû2
 	SOUND_LABEL_SE_heartbeatupup,// BGMí èÌéû2
 	SOUND_LABEL_BGM_escapedrum,//BGMì¶Ç∞ÇÈÇ∆Ç´
-	SOUND_LABEL_SE_run,//BGMì¶Ç∞ÇÈÇ∆Ç´
 
 
-
-
-
-
-
-	SOUND_LABEL_BGM_sample001,	// BGM1
-	SOUND_LABEL_BGM_sample002,	// BGM2
-	SOUND_LABEL_SE_bomb000,		// îöî≠âπ
-	SOUND_LABEL_SE_defend000,	// 
-	SOUND_LABEL_SE_defend001,	// 
-	SOUND_LABEL_SE_hit000,		// 
-	SOUND_LABEL_SE_laser000,	// 
-	SOUND_LABEL_SE_lockon000,	// 
-	SOUND_LABEL_SE_shot000,		// 
-	SOUND_LABEL_SE_shot001,		// 
 	SOUND_LABEL_MAX,
 };
 

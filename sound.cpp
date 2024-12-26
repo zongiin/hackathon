@@ -45,17 +45,6 @@ SOUNDPARAM g_aParam[SOUND_LABEL_MAX] =
 
 
 
-
-	{ (char*)"data/BGM/bgm_maoudamashii_neorock73.wav", -1 },	// BGM1
-	{ (char*)"data/BGM/sample001.wav", -1 },	// BGM2
-	{ (char*)"data/SE/bomb000.wav", 0 },		// ’e”­ŽË‰¹
-	{ (char*)"data/SE/defend000.wav", 0 },		// ’e”­ŽË‰¹
-	{ (char*)"data/SE/defend001.wav", 0 },		// ’e”­ŽË‰¹
-	{ (char*)"data/SE/hit000.wav", 0 },			// ’e”­ŽË‰¹
-	{ (char*)"data/SE/laser000.wav", 0 },		// ’e”­ŽË‰¹
-	{ (char*)"data/SE/lockon000.wav", 0 },		// ’e”­ŽË‰¹
-	{ (char*)"data/SE/shot000.wav", 0 },		// ’e”­ŽË‰¹
-	{ (char*)"data/SE/shot001.wav", 0 },		// ƒqƒbƒg‰¹
 };
 
 //=============================================================================

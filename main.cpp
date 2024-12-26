@@ -445,7 +445,7 @@ void SetMode(int mode)
 	case MODE_GAME:
 		
 		PlaySound(SOUND_LABEL_BGM_escapedrum);
-		PlaySound(SOUND_LABEL_SE_run);
+		//PlaySound(SOUND_LABEL_SE_run);
 		// ƒJƒƒ‰‚à‚±‚±‚Å‰Šú‰»‚µ‚Ä‚¨‚­–‚É‚µ‚½
 		UninitCamera();
 		InitCamera();
@@ -455,7 +455,7 @@ void SetMode(int mode)
 
 	case MODE_RESULT:
 		PlaySound(SOUND_LABEL_BGM_escapedrum);
-		PlaySound(SOUND_LABEL_SE_run);
+		//PlaySound(SOUND_LABEL_SE_run);
 
 		// ƒŠƒUƒ‹ƒg‰æ–Ê‚Ì‰Šú‰»
 		InitModeresult();
