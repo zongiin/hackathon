@@ -20,8 +20,6 @@ enum
 	SOUND_LABEL_SE_heartbeatupup,// BGM’Êí2
 	SOUND_LABEL_BGM_escapedrum,//BGM“¦‚°‚é‚Æ‚«
 	SOUND_LABEL_SE_run,//BGM“¦‚°‚é‚Æ‚«
-	SOUND_LABEL_SE_heartbeatupup,// BGM’Êí2
-	SOUND_LABEL_BGM_escapedrum,//BGM“¦‚°‚é‚Æ‚«
 
 
 	SOUND_LABEL_MAX,

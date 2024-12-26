@@ -43,7 +43,7 @@ SOUNDPARAM g_aParam[SOUND_LABEL_MAX] =
 	{ (char*)"data/BGM/heartbeatupup.wav", -1 },//êSâπÅië¨Ç¢Åj
 
 
-
+	{ (char*)"data/BGM/run.wav", -1 },
 
 };
 
